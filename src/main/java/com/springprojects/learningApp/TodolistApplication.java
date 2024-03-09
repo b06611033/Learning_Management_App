@@ -1,4 +1,6 @@
-package com.springprojects.todolist;
+package com.springprojects.learningApp;
+
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

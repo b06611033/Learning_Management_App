@@ -1,10 +1,13 @@
-package com.springprojects.todolist.todo;
+package com.springprojects.learningApp.todo;
 
 import java.time.LocalDate;
+
+import jakarta.validation.constraints.Size;
 
 public class Todo {
 	private int id;
 	private String username;
+	@Size(min=5, message="Should exceed minimum length: 5 characters")
 	private String description;
 	private LocalDate targetDate;
 	private boolean done;
