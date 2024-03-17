@@ -2,15 +2,31 @@ package com.springprojects.learningApp.todo;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
+@Entity  // map Todo bean to database table
 public class Todo {
+	
+	public Todo() {
+		
+	}
+	
+	@Id  // primary key
+	@GeneratedValue
 	private int id;
+	
 	private String username;
+	
 	@Size(min=5, message="Should exceed minimum length: 5 characters")
 	private String description;
+	
 	private LocalDate targetDate;
+	
 	private boolean done;
+	
 	public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
 		super();
 		this.id = id;
@@ -19,6 +35,7 @@ public class Todo {
 		this.targetDate = targetDate;
 		this.done = done;
 	}
+	
 	public int getId() {
 		return id;
 	}
