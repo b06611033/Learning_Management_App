@@ -20,7 +20,6 @@ public class Todo {
 	
 	private String username;
 	
-	@Size(min=5, message="Should exceed minimum length: 5 characters")
 	private String description;
 	
 	private LocalDate targetDate;
