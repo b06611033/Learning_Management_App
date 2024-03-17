@@ -32,7 +32,7 @@ public class TodoController {
 	
 	@RequestMapping(value="add-todo", method = RequestMethod.GET)
 	public String showNewTodoPage(ModelMap model) {
-		Todo todo = new Todo(0, (String)model.get("name"), "", LocalDate.now().plusYears(1), false);
+		Todo todo = new Todo(0, (String)model.get("name"), "", LocalDate.now(), false);
 		model.put("todo", todo);
 		return "todo";
 	}
@@ -40,7 +40,7 @@ public class TodoController {
 	@RequestMapping(value="add-todo", method = RequestMethod.POST)
 	public String createNewTodo(Todo todo, ModelMap model, BindingResult result) {
 		//input todo is binded with the info in todo.jsp
-		todoService.addTodo((String)model.get("name"), todo.getDescription(), LocalDate.now().plusYears(1), false);
+		todoService.addTodo((String)model.get("name"), todo.getDescription(), todo.getTargetDate(), false);
 		return "redirect:list-todos";
 	}
 	
