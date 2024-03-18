@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 import java.util.List;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -38,9 +36,8 @@ public class TodoControllerJpa {
 	}
 
 	private String getLoggedInUsername(ModelMap model) {
-		Authentication authentication = 
-				SecurityContextHolder.getContext().getAuthentication();
-		return authentication.getName();
+		
+		return (String)model.get("name");
 	}
 	
 	@RequestMapping(value="add-todo", method = RequestMethod.GET)
