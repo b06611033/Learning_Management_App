@@ -10,6 +10,7 @@
 				Password: <input type="password" name="password">
 				<input type="submit">
 			</form>
+			<a href="login"> Already Registered? Login here!</a>
 		</div>
 		 
 	</body>

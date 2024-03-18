@@ -12,6 +12,7 @@
 				Password: <input type="password" name="password">
 				<input type="submit">
 			</form>
+			<a href="register"> Not Registered? Register here!</a>
 		</div>
 		 
 	</body>

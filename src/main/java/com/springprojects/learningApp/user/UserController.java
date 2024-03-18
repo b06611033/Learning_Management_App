@@ -1,5 +1,7 @@
 package com.springprojects.learningApp.user;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,10 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.springprojects.learningApp.todo.TodoRepository;
 
 @Controller
-@SessionAttributes("name")
+@SessionAttributes({"name", "user"})
 public class UserController {
 
 	private AuthenticationService authenticationService;
@@ -38,7 +39,7 @@ public class UserController {
 	@RequestMapping(value="register",method = RequestMethod.POST)
 	public String RegisterUser(@RequestParam String name, 
 			@RequestParam String password, ModelMap model) {
-		User newUser = new User(0, name, password);
+		User newUser = new User(0, name, password, new ArrayList<>());
 		userRepository.save(newUser);
 		return "home";
 	}
@@ -53,8 +54,9 @@ public class UserController {
 			@RequestParam String password, ModelMap model) {
 		
 		if(authenticationService.authenticate(name, password)) {
-		
-			model.put("name", name);		
+			User user = userRepository.findByUsername(name);
+			model.put("name", name);	
+			model.put("user", user);
 			return "welcome";
 		}
 		

@@ -2,10 +2,14 @@ package com.springprojects.learningApp.todo;
 
 import java.time.LocalDate;
 
+import com.springprojects.learningApp.user.User;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity  // map Todo bean to database table
 public class Todo {
@@ -18,7 +22,9 @@ public class Todo {
 	@GeneratedValue
 	private int id;
 	
-	private String username;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	private String description;
 	
@@ -26,10 +32,10 @@ public class Todo {
 	
 	private boolean done;
 	
-	public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
+	public Todo(int id, User user, String description, LocalDate targetDate, boolean done) {
 		super();
 		this.id = id;
-		this.username = username;
+		this.user = user;
 		this.description = description;
 		this.targetDate = targetDate;
 		this.done = done;
@@ -41,11 +47,11 @@ public class Todo {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getUsername() {
-		return username;
+	public User getUser() {
+		return user;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public String getDescription() {
 		return description;
@@ -67,7 +73,7 @@ public class Todo {
 	}
 	@Override
 	public String toString() {
-		return "Todo [id=" + id + ", username=" + username + ", description=" + description + ", targetDate="
+		return "Todo [id=" + id + ", user=" + user + ", description=" + description + ", targetDate="
 				+ targetDate + ", done=" + done + "]";
 	}
 	

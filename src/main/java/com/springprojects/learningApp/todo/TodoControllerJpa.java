@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.springprojects.learningApp.user.User;
+
+
 
 @Controller
-@SessionAttributes("name")
+@SessionAttributes({"name", "user"})
 public class TodoControllerJpa {
 	
 	public TodoControllerJpa(TodoRepository todoRepository) {
@@ -27,22 +30,25 @@ public class TodoControllerJpa {
 	
 	@RequestMapping("list-todos")
 	public String listAllTodos(ModelMap model) {
-		String username = getLoggedInUsername(model);
+		User user = getLoggedInUsername(model);
 		
-		List<Todo> todos = todoRepository.findByUsername(username);
+		List<Todo> todos = todoRepository.findByUser(user);
 		model.addAttribute("todos", todos);
 		return "listTodos";
 	}
 
-	private String getLoggedInUsername(ModelMap model) {
+	private User getLoggedInUsername(ModelMap model) {
 		
-		return (String)model.get("name");
+		return (User) model.get("user");
 	}
 	
 	@RequestMapping(value="add-todo", method = RequestMethod.GET)
 	public String showNewTodoPage(ModelMap model) {
-		String username = getLoggedInUsername(model);
-		Todo todo = new Todo(0, username, "", LocalDate.now(), false);
+		User user = getLoggedInUsername(model);
+		Todo todo = new Todo(0, user, "", LocalDate.now(), false);
+		System.out.println("user is: ");
+		System.out.println(todo.getUser());
+		System.out.println(user);
 		model.put("todo", todo);
 		return "todo";
 	}
@@ -50,8 +56,10 @@ public class TodoControllerJpa {
 	@RequestMapping(value="add-todo", method = RequestMethod.POST)
 	public String createNewTodo(Todo todo, ModelMap model, BindingResult result) {
 		//input todo is binded with the info in todo.jsp
-		String username = getLoggedInUsername(model);
-		todo.setUsername(username);
+		System.out.println("user now is: ");
+		System.out.println(todo.getUser());
+		User user = getLoggedInUsername(model);
+		todo.setUser(user);
 		todoRepository.save(todo);
 		return "redirect:list-todos";
 	}
@@ -71,7 +79,8 @@ public class TodoControllerJpa {
 	
 	@RequestMapping(value = "update-todo", method = RequestMethod.POST)
 	public String updateTodo(Todo todo, ModelMap model, BindingResult result) {
-		todo.setUsername(getLoggedInUsername(model));
+		User user = getLoggedInUsername(model);
+		todo.setUser(user);
 		todoRepository.save(todo);
 		return "redirect:list-todos";
 	}
