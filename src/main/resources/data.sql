@@ -1,11 +1,17 @@
-insert into todo(ID, USERNAME, DESCRIPTION, TARGET_DATE, DONE)
-values(10001, 'Bryan', 'Task1', CURRENT_DATE(), false);
+insert into school(ID, NAME, LOCATION)
+values(1, 'Texas A&M', 'College Station, Texas');
 
-insert into todo(ID, USERNAME, DESCRIPTION, TARGET_DATE, DONE)
-values(10002, 'Bryan', 'Task2', CURRENT_DATE(), false);
+insert into school(ID, NAME, LOCATION)
+values(2, 'Stanford', 'Palo Alto, California');
 
-insert into todo(ID, USERNAME, DESCRIPTION, TARGET_DATE, DONE)
-values(10003, 'Bryan', 'Task3', CURRENT_DATE(), false);
+insert into school(ID, NAME, LOCATION)
+values(3, 'Purdue', 'West Lafayette, Indiana');
 
-insert into todo(ID, USERNAME, DESCRIPTION, TARGET_DATE, DONE)
-values(10004, 'Bryan', 'Task4', CURRENT_DATE(), false);
+insert into user(ID, USERNAME, PASSWORD, SCHOOL_ID)
+values(1, 'bryan', '123', 1);
+
+insert into user(ID, USERNAME, PASSWORD, SCHOOL_ID)
+values(2, 'messi', '1234', 2);
+
+insert into user(ID, USERNAME, PASSWORD, SCHOOL_ID)
+values(3, 'cr7', '12345', 3);

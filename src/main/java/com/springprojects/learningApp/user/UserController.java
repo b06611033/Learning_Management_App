@@ -39,7 +39,7 @@ public class UserController {
 	@RequestMapping(value="register",method = RequestMethod.POST)
 	public String RegisterUser(@RequestParam String name, 
 			@RequestParam String password, ModelMap model) {
-		User newUser = new User(0, name, password, new ArrayList<>());
+		User newUser = new User(0, name, password, new ArrayList<>(), null);
 		userRepository.save(newUser);
 		return "home";
 	}
