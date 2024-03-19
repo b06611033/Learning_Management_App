@@ -8,10 +8,10 @@ insert into school(ID, NAME, LOCATION)
 values(3, 'Purdue', 'West Lafayette, Indiana');
 
 insert into user(ID, USERNAME, PASSWORD, SCHOOL_ID)
-values(1, 'bryan', '123', 1);
+values(10000, 'Messi', '123', 1);
 
 insert into user(ID, USERNAME, PASSWORD, SCHOOL_ID)
-values(2, 'messi', '1234', 2);
+values(10001, 'Bryan', '123', 2);
 
 insert into user(ID, USERNAME, PASSWORD, SCHOOL_ID)
-values(3, 'cr7', '12345', 3);
+values(10002, 'CR7', '123', 3);

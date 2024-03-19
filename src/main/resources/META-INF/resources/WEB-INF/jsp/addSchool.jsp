@@ -1,19 +1,25 @@
 <%@ include file="common/header.jspf" %>
 <%@ include file="common/navigation.jspf" %>
 <div class="container">
-	<h1> Please enter todo details</h1>
-	<form:form method="post" modelAttribute="todo">
-		<fieldset class="mb-3">
-			<form:label path="description">Description: </form:label>
-			<form:input type="text" path="description" required="required"/>
-		</fieldset>
-		<fieldset class="mb-3">
-			<form:label path="targetDate">Anticipated finish date: </form:label>
-			<form:input type="text" path="targetDate" required="required"/>
-		</fieldset>
-		<form:input type="hidden" path="id"/>
-		<form:input type="hidden" path="done"/>
-		<input type="submit" class="btn btn-success"/>
-	</form:form>
+	<div>Welcome to the university list page ${name}!</div>
+	<hr>
+	<h1> Universities</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Location</th>
+			</tr>
+		</thead>
+		<tbody>		
+			<c:forEach items="${schools}" var="school">
+				<tr>
+					<td>${school.name}</td>
+					<td>${school.location}</td>
+					<td><a href="update-school?id=${school.id}" class="btn btn-success">ADD</a></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 </div>
 <%@ include file="common/footer.jspf" %>

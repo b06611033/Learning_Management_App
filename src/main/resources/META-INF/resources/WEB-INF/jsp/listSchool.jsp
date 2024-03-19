@@ -8,15 +8,13 @@
 			<tr>
 				<th>University</th>
 				<th>Location</th>
-				<th>Is Done?</th>
 			</tr>
 		</thead>
 		<tbody>		
 			<tr>
 				<td>${school.name}</td>
 				<td>${school.location}</td>
-				<td><a href="update-todo?id=${school.id}" class="btn btn-success">UPDATE</a></td>
-				<td><a href="delete-todo?id=${school.id}" class="btn btn-warning">DELETE</a></td>
+				<td><a href="delete-school" class="btn btn-warning">DELETE</a></td>
 			</tr>
 		</tbody>
 	</table>

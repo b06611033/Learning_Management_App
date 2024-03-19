@@ -5,5 +5,6 @@
 		<h1>Welcome to the learning management app ${name}!</h1>
 		<div><a href="list-todos"> Manage your todos</a></div>
 		<div><a href="school"> Your school</a></div>
+		<div><a href="add-school"> Add school</a></div>
 	</div>
 <%@ include file="common/footer.jspf" %>

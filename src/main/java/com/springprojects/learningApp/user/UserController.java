@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+
 
 
 @Controller
@@ -32,15 +34,17 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="register",method = RequestMethod.GET)
-	public String gotoRegisterPage() {
+	public String gotoRegisterPage(ModelMap model) {
+		User user = new User(0, "", "", new ArrayList<>(), null);
+		model.put("user", user);
 		return "register";
 	}
 
 	@RequestMapping(value="register",method = RequestMethod.POST)
-	public String RegisterUser(@RequestParam String name, 
-			@RequestParam String password, ModelMap model) {
-		User newUser = new User(0, name, password, new ArrayList<>(), null);
-		userRepository.save(newUser);
+	public String RegisterUser(User user, ModelMap model, BindingResult result) {
+		//user.setId(20);
+		user.setSchool(null);
+		userRepository.save(user);
 		return "home";
 	}
 
