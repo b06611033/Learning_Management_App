@@ -1,6 +1,7 @@
 package com.springprojects.learningApp.school;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,19 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.springprojects.learningApp.user.User;
-import com.springprojects.learningApp.user.UserRepository;
-
 @Controller
 @SessionAttributes({"name", "user"})
 public class SchoolController {
 	
 	private SchoolRepository schoolRepository;
-	private UserRepository userRepository;
 	
-	public SchoolController(SchoolRepository schoolRepository, UserRepository userRepository) {
+	public SchoolController(SchoolRepository schoolRepository) {
 		super();
 		this.schoolRepository = schoolRepository;
-		this.userRepository = userRepository;
 	}
 	
 	@RequestMapping(value="school",method = RequestMethod.GET)
@@ -30,20 +27,27 @@ public class SchoolController {
 		User user = (User) model.get("user");
 		School school = user.getSchool();
 		if(school == null) {
-			System.out.println("entered");
 			return "welcome";
 		}
-		System.out.println(school.getLocation());
 		model.addAttribute("school", school);
 		return "listSchool";
 	}
 	
 	@RequestMapping("delete-school")
-	public String deleteTodo(ModelMap model) {
+	public String deleteSchool(ModelMap model) {
+		System.out.println("xxxxxxx");
 		User user = (User) model.get("user");
+		School school = user.getSchool();
+		Set<User> students = school.getStudents();
 		user.setSchool(null);
-		System.out.println(user.getSchool());
-		userRepository.save(user);
+		for(User s: students) {
+			if(s.getId() == user.getId()) {
+				students.remove(s);
+				break;
+			}
+		}
+		System.out.println(school.getName());
+		schoolRepository.save(school);
 		return "welcome";
 	}
 	
@@ -56,10 +60,19 @@ public class SchoolController {
 	
 	@RequestMapping(value="update-school",method = RequestMethod.GET)
 	public String addSchool(@RequestParam int id, ModelMap model) {
-		School school = schoolRepository.findById(id).get();
+		System.out.println("--------");
 		User user = (User) model.get("user");
+		School school = schoolRepository.findById(id).get();
+		Set<User> students = school.getStudents();
+		for(User s: students) {
+			if(s.getId() == user.getId()) {
+				return "welcome";
+			}
+		}
+		students.add(user);
 		user.setSchool(school);
-		userRepository.save(user);
+		System.out.println(user.getSchool().getName());
+		schoolRepository.save(school);
 		return "welcome";
 	}
 	

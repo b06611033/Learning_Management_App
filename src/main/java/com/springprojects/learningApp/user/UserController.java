@@ -1,6 +1,7 @@
 package com.springprojects.learningApp.user;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,16 +34,20 @@ public class UserController {
 		return "home";
 	}
 	
+	@RequestMapping(value="welcome",method = RequestMethod.GET)
+	public String gotbacktoWelcomePage() {
+		return "welcome";
+	}
+	
 	@RequestMapping(value="register",method = RequestMethod.GET)
 	public String gotoRegisterPage(ModelMap model) {
-		User user = new User(0, "", "", new ArrayList<>(), null);
+		User user = new User(0, "", "", new ArrayList<>(), null, new HashSet<>());
 		model.put("user", user);
 		return "register";
 	}
 
 	@RequestMapping(value="register",method = RequestMethod.POST)
 	public String RegisterUser(User user, ModelMap model, BindingResult result) {
-		//user.setId(20);
 		user.setSchool(null);
 		userRepository.save(user);
 		return "home";

@@ -66,6 +66,7 @@ public class TodoControllerJpa {
 	
 	@RequestMapping("delete-todo")
 	public String deleteTodo(@RequestParam int id) {
+		System.out.println(id);
 		todoRepository.deleteById(id);
 		return "redirect:list-todos";
 	}
