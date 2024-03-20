@@ -2,6 +2,7 @@ package com.springprojects.learningApp.course;
 
 import java.util.Set;
 
+import com.springprojects.learningApp.school.School;
 import com.springprojects.learningApp.user.User;
 
 import jakarta.persistence.Entity;
@@ -18,7 +19,7 @@ public class Course {
 	@GeneratedValue
 	private int id;
 	
-	public Course(int id, String coursename, String instructor, Set<User> takes) {
+	public Course(int id, String coursename, String instructor, Set<User> takes, School school) {
 		super();
 		this.id = id;
 		this.coursename = coursename;

@@ -3,6 +3,7 @@ package com.springprojects.learningApp.school;
 
 import java.util.Set;
 
+import com.springprojects.learningApp.course.Course;
 import com.springprojects.learningApp.user.User;
 
 import jakarta.persistence.CascadeType;
@@ -28,9 +29,9 @@ public class School {
 	
 	private String location;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name="school_id")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="school")
 	private Set<User> students;
+	
 	
 	public School(int id, String name, String location, Set<User> students) {
 		super();
