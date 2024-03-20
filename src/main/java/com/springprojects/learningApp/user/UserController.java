@@ -41,7 +41,7 @@ public class UserController {
 	
 	@RequestMapping(value="register",method = RequestMethod.GET)
 	public String gotoRegisterPage(ModelMap model) {
-		User user = new User(0, "", "", new ArrayList<>(), null, new HashSet<>());
+		User user = new User(0, "", "", new ArrayList<>(), null, new HashSet<>(), new ArrayList<>());
 		model.put("user", user);
 		return "register";
 	}

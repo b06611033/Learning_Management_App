@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.springprojects.learningApp.course.Course;
+import com.springprojects.learningApp.diary.Diary;
 import com.springprojects.learningApp.school.School;
 import com.springprojects.learningApp.todo.Todo;
 
@@ -40,12 +41,15 @@ public class User {
 	@OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Todo> todos;
 	
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Diary> diaries;
+	
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "takes")
 	Set<Course> courses;
 	
 	
 	
-	public User(int id, String username, String password, List<Todo> todos, School school, Set<Course> courses) {
+	public User(int id, String username, String password, List<Todo> todos, School school, Set<Course> courses,  List<Diary> diaries) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -53,6 +57,7 @@ public class User {
 		this.todos = todos;
 		this.school = school;
 		this.courses = courses;
+		this.diaries = diaries;
 	}
 	
 	public int getId() {

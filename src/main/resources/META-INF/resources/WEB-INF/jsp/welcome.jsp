@@ -8,5 +8,6 @@
 		<div><a href="add-school"> Add school</a></div>
 		<div><a href="course"> Your courses</a></div>
 		<div><a href="add-course"> Add course</a></div>
+		<div><a href="list-diaries"> Manage your diaries</a></div>
 	</div>
 <%@ include file="common/footer.jspf" %>
