@@ -11,7 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 @Entity  // map User bean to database table
@@ -32,13 +31,17 @@ public class School {
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="school")
 	private Set<User> students;
 	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="school")
+	private Set<Course> courses;
 	
-	public School(int id, String name, String location, Set<User> students) {
+	
+	public School(int id, String name, String location, Set<User> students, Set<Course> courses) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.location = location;
 		this.students = students;
+		this.courses = courses;
 	}
 	
 	public int getId() {
@@ -66,6 +69,14 @@ public class School {
 
 	public void setStudents(Set<User> students) {
 		this.students = students;
+	}
+
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
 	}
 	
 	

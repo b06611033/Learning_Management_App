@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Course {
@@ -25,6 +26,7 @@ public class Course {
 		this.coursename = coursename;
 		this.instructor = instructor;
 		this.takes = takes;
+		this.school = school;	
 	}
 
 	private String coursename;
@@ -37,6 +39,10 @@ public class Course {
 			  joinColumns = @JoinColumn(name = "course_id"), 
 			  inverseJoinColumns = @JoinColumn(name = "student_id"))
 	Set<User> takes;
+	
+	@ManyToOne
+	@JoinColumn(name="school_id")
+	private School school;
 
 	public int getId() {
 		return id;
@@ -72,6 +78,14 @@ public class Course {
 	
 	public Course() {
 		
+	}
+
+	public School getSchool() {
+		return school;
+	}
+
+	public void setSchool(School school) {
+		this.school = school;
 	}
 	
 }

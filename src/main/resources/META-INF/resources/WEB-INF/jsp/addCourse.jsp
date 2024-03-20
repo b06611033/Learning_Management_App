@@ -9,6 +9,7 @@
 			<tr>
 				<th>Name</th>
 				<th>Instructor</th>
+				<th>Associated with</th>
 			</tr>
 		</thead>
 		<tbody>		
@@ -16,6 +17,7 @@
 				<tr>
 					<td>${course.coursename}</td>
 					<td>${course.instructor}</td>
+					<td>${course.school.name}</td>
 					<td><a href="update-course?id=${course.id}" class="btn btn-success">ADD</a></td>
 				</tr>
 			</c:forEach>
