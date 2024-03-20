@@ -28,22 +28,10 @@ public class CourseController {
 	@RequestMapping(value="course",method = RequestMethod.GET)
 	public String gotoCoursePage(ModelMap model) {
 		User user = (User) model.get("user");
-		//Set<Course> courses = user.getCourses();
-		List<Course> allCourses = courseRepository.findAll();
-		Set<Course> courses = new HashSet<>();
-		for(Course c: allCourses) {
-			Set<User> students = c.getTakes();
-			for(User student: students) {
-				if(student.getId() == user.getId()) {
-					courses.add(c);
-					break;
-				}
-			}
-		}
+		Set<Course> courses = user.getCourses();
 		if(courses == null || courses.size()==0) {
 			return "welcome";
 		}
-		user.setCourses(courses);
 		model.addAttribute("courses", courses);
 		return "listCourses";
 	}
