@@ -1,7 +1,6 @@
 package com.springprojects.learningApp.course;
 
 
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Controller;
@@ -40,7 +39,8 @@ public class CourseController {
 	public String gotoAddCoursePage(ModelMap model) {
 		User user = (User) model.get("user");
 		School school = user.getSchool();
-		List<Course> courses = courseRepository.findBySchool(school);
+		//List<Course> courses = courseRepository.findBySchool(school);
+		Set<Course> courses = school.getCourses();
 		model.addAttribute("courses", courses);
 		return "addCourse";
 	}
