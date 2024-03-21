@@ -41,9 +41,6 @@ public class DiaryController {
 	public String showNewDiaryPage(ModelMap model) {
 		User user = getLoggedInUsername(model);
 		Diary diary = new Diary(0, user, "", LocalDate.now());
-		System.out.println("user is: ");
-		System.out.println(diary.getUser());
-		System.out.println(user);
 		model.put("diary", diary);
 		return "diary";
 	}
@@ -51,8 +48,6 @@ public class DiaryController {
 	@RequestMapping(value="add-diary", method = RequestMethod.POST)
 	public String createNewDiary(Diary diary, ModelMap model, BindingResult result) {
 		//input todo is binded with the info in todo.jsp
-		System.out.println("user now is: ");
-		System.out.println(diary.getUser());
 		User user = getLoggedInUsername(model);
 		diary.setUser(user);
 		diaryRepository.save(diary);
@@ -61,7 +56,6 @@ public class DiaryController {
 	
 	@RequestMapping("delete-diary")
 	public String deleteDiary(@RequestParam int id) {
-		System.out.println(id);
 		diaryRepository.deleteById(id);
 		return "redirect:list-diaries";
 	}

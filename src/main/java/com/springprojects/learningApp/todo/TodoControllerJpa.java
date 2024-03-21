@@ -46,9 +46,6 @@ public class TodoControllerJpa {
 	public String showNewTodoPage(ModelMap model) {
 		User user = getLoggedInUsername(model);
 		Todo todo = new Todo(0, user, "", LocalDate.now(), false);
-		System.out.println("user is: ");
-		System.out.println(todo.getUser());
-		System.out.println(user);
 		model.put("todo", todo);
 		return "todo";
 	}
@@ -56,8 +53,6 @@ public class TodoControllerJpa {
 	@RequestMapping(value="add-todo", method = RequestMethod.POST)
 	public String createNewTodo(Todo todo, ModelMap model, BindingResult result) {
 		//input todo is binded with the info in todo.jsp
-		System.out.println("user now is: ");
-		System.out.println(todo.getUser());
 		User user = getLoggedInUsername(model);
 		todo.setUser(user);
 		todoRepository.save(todo);
@@ -66,7 +61,6 @@ public class TodoControllerJpa {
 	
 	@RequestMapping("delete-todo")
 	public String deleteTodo(@RequestParam int id) {
-		System.out.println(id);
 		todoRepository.deleteById(id);
 		return "redirect:list-todos";
 	}

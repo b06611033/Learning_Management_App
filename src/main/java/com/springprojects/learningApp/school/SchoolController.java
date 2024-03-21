@@ -35,7 +35,6 @@ public class SchoolController {
 	
 	@RequestMapping("delete-school")
 	public String deleteSchool(ModelMap model) {
-		System.out.println("xxxxxxx");
 		User user = (User) model.get("user");
 		School school = user.getSchool();
 		Set<User> students = school.getStudents();
@@ -46,7 +45,6 @@ public class SchoolController {
 				break;
 			}
 		}
-		System.out.println(school.getName());
 		schoolRepository.save(school);
 		return "welcome";
 	}
@@ -60,7 +58,6 @@ public class SchoolController {
 	
 	@RequestMapping(value="update-school",method = RequestMethod.GET)
 	public String addSchool(@RequestParam int id, ModelMap model) {
-		System.out.println("--------");
 		User user = (User) model.get("user");
 		School school = schoolRepository.findById(id).get();
 		Set<User> students = school.getStudents();
@@ -71,7 +68,6 @@ public class SchoolController {
 		}
 		students.add(user);
 		user.setSchool(school);
-		System.out.println(user.getSchool().getName());
 		schoolRepository.save(school);
 		return "welcome";
 	}

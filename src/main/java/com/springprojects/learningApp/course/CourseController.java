@@ -62,7 +62,6 @@ public class CourseController {
 	
 	@RequestMapping("delete-course")
 	public String deleteCourse(@RequestParam int id, ModelMap model) {
-		System.out.println("xxxxxxx");
 		User user = (User) model.get("user");
 		Course course = courseRepository.findById(id).get();
 		int courseId = course.getId();
