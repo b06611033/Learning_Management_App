@@ -75,3 +75,69 @@ values(9999, 'Harden', '123', 3);
 
 insert into user(ID, USERNAME, PASSWORD, SCHOOL_ID)
 values(10000, 'Messi', '123', 1);
+
+
+-- DELIMITER $$
+-- CREATE PROCEDURE generate_data()
+-- BEGIN
+--     DECLARE i INT DEFAULT 1;
+
+--     DECLARE max_value INT DEFAULT 400; 
+--     -- Loop to generate data
+--     WHILE i <= max_value DO
+--         insert into course(ID, COURSENAME, INSTRUCTOR, SCHOOL_ID)
+-- values(i,CONCAT('TAMU COURSE ', i), CONCAT('TAMU INSTRUCTOR ', i), 1);
+--         SET i = i + 1;
+--     END WHILE;
+
+--      SET max_value = 800; 
+--          -- Loop to generate data
+--     WHILE i <= max_value DO
+--         insert into course(ID, COURSENAME, INSTRUCTOR, SCHOOL_ID)
+-- values(i,CONCAT('STANFORD COURSE ', i), CONCAT('STANFORD INSTRUCTOR ', i), 2);
+--         SET i = i + 1;
+--     END WHILE;
+
+--    SET max_value = 1200; 
+--          -- Loop to generate data
+--     WHILE i <= max_value DO
+--         insert into course(ID, COURSENAME, INSTRUCTOR, SCHOOL_ID)
+-- values(i,CONCAT('PURDUE COURSE ', i), CONCAT('PURDUE INSTRUCTOR ', i), 3);
+--         SET i = i + 1;
+--     END WHILE;
+-- END$$
+-- DELIMITER ;
+
+
+-- DELIMITER $$
+-- CREATE PROCEDURE generate_data_two()
+-- BEGIN
+--     DECLARE i INT DEFAULT 1;
+
+--     DECLARE max_value INT DEFAULT 400; 
+--     -- Loop to generate data
+--     WHILE i <= max_value DO
+--         insert into user(ID, USERNAME, PASSWORD, SCHOOL_ID)
+-- values(i+10000,CONCAT('user', i), CONCAT('pwd', i), 1);
+--         SET i = i + 1;
+--     END WHILE;
+
+--      SET max_value = 800; 
+--          -- Loop to generate data
+--     WHILE i <= max_value DO
+--                 insert into user(ID, USERNAME, PASSWORD, SCHOOL_ID)
+-- values(i+10000,CONCAT('user', i), CONCAT('pwd', i), 2);
+--         SET i = i + 1;
+--     END WHILE;
+
+--    SET max_value = 1200; 
+--          -- Loop to generate data
+--     WHILE i <= max_value DO
+--                 insert into user(ID, USERNAME, PASSWORD, SCHOOL_ID)
+-- values(i+10000,CONCAT('user', i), CONCAT('pwd', i), 3);
+--         SET i = i + 1;
+--     END WHILE;
+-- END$$
+-- DELIMITER ;
+
+
