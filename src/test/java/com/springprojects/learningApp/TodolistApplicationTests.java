@@ -1,4 +1,4 @@
-package com.springprojects.todolist;
+package com.springprojects.learningApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
